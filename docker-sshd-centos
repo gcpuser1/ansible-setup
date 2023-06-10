@@ -1,0 +1,7 @@
+FROM centos/systemd
+RUN yum install openssh-server python3 -y
+RUN systemctl enable sshd
+RUN ssh-keygen -A
+RUN echo root:root | chpasswd
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]

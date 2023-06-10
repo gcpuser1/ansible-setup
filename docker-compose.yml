@@ -1,0 +1,49 @@
+version: '3'
+networks:
+  my-ntwk:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
+services:
+  controller:
+    build: 
+      context: .
+      dockerfile: docker-ansible
+    tty: true
+    container_name: contoller
+    hostname: contoller.ansible.com
+    ports:
+      - "22:22"
+    networks:
+      my-ntwk:
+        ipv4_address: 172.20.0.5
+    extra_hosts:
+      - "client1.ansible.com:172.20.0.6"
+      - "client2.ansible.com:172.20.0.7"
+    depends_on:
+      - client1
+      - client2
+
+  client1:
+    build: 
+      context: .
+      dockerfile: docker-sshd-centos
+    tty: true
+    container_name: client1
+    hostname: client1.ansible.com
+    ports:
+      - "22:22"
+    networks:
+      my-ntwk:
+        ipv4_address: 172.20.0.6
+
+  client2:
+    image: rastasheep/ubuntu-sshd
+    tty: true
+    container_name: client2
+    ports:
+      - "22:22"
+    hostname: client2.ansible.com
+    networks:
+      my-ntwk:
+        ipv4_address: 172.20.0.7
