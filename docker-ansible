@@ -1,7 +1,9 @@
 FROM centos/systemd
 RUN yum install epel-release python3 openssh-server -y && yum install ansible -y
+RUN sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 RUN systemctl enable sshd
 RUN ssh-keygen -A
 RUN echo root:root | chpasswd
+COPY .ansible.cfg /root/.ansible.cfg
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
