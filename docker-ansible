@@ -5,5 +5,6 @@ RUN systemctl enable sshd
 RUN ssh-keygen -A
 RUN echo root:root | chpasswd
 COPY .ansible.cfg /root/.ansible.cfg
+COPY hosts /etc/ansible/hosts
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]

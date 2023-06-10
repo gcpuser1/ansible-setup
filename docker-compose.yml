@@ -14,6 +14,8 @@ services:
     hostname: contoller.ansible.com
     expose:
       - "22"
+    ports:
+      - "2222:22"
     networks:
       my-ntwk:
         ipv4_address: 172.20.0.5

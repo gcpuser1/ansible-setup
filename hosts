@@ -1,0 +1,5 @@
+[centos]
+client1 172.20.0.6 ansible_password=root  ansible_user=root ansible_connection=ssh
+[ubuntu]
+client2 172.20.0.7 ansible_password=root  ansible_user=root ansible_connection=ssh
+ 
