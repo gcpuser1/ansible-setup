@@ -40,7 +40,9 @@ services:
         ipv4_address: 172.20.0.6
 
   client2:
-    image: rastasheep/ubuntu-sshd
+    build: 
+      context: .
+      dockerfile: docker-sshd-ubuntu
     tty: true
     container_name: client2
     expose:

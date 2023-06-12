@@ -1,0 +1,7 @@
+FROM ubuntu
+RUN apt-get update -y && apt-get install -y openssh-client openssh-server python3
+RUN sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+RUN service ssh start
+RUN ssh-keygen -A
+RUN echo root:root | chpasswd
+EXPOSE 22
