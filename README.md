@@ -11,3 +11,7 @@ Host localhost
     UserKnownHostsFile /dev/null
     Port  2222
 </code>
+
+added bind mount for local code setup developement purpose
+
+replace `source: <PATH>` in controller service
