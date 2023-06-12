@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 networks:
   my-ntwk:
     ipam:
@@ -12,6 +12,11 @@ services:
     tty: true
     container_name: contoller
     hostname: contoller.ansible.com
+    volumes:
+      - type: bind
+        #  Replace source with ansible CODE direcotry
+        source: /ansible
+        target: /ansiblelabs
     expose:
       - "22"
     ports:
